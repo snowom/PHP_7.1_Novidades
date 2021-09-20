@@ -1,0 +1,26 @@
+=-=-=-=-=-=-= String com offset negativo =-=-=-=-=-=-=
+
+--> A partir da versão 7.1 do PHP, é possível trabalhar com offset negativo nas Strings;
+
+Ex)
+
+<?php
+    $text = "abcdef";
+    $result = $text[-2];
+    echo $result;
+?>
+
+O código acima irá printar a letra "e", pois quando o offset é negativo, a contagem começa a ser feita de trás para frente;
+
+
+A mesma coisa pode ser feita agora com a função substr():
+
+Ex)
+
+<?php
+    $text = "abcdef";
+    $result = substr($text, -2, -1);
+    echo $result;
+?>
+
+O código acima irá printar a letra "e", pois quando o offset é negativo, a contagem começa a ser feita de trás para frente;

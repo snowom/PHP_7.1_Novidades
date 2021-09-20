@@ -1,0 +1,24 @@
+Ao tentar somar 2 Strings, o PHP tentará converter as String em números (int ou float) e fará a soma;
+
+Ex)
+
+<?php
+    $sum = "1" + "2";
+    echo $sum;
+?>
+
+O código acima irá printar na tela o valor 3.
+
+
+Contudo, ao tentar fazer o mesmo procedimento com uma String mista, que contém números e letras,
+o PHP tentará converter a parte numérica da String e somará os valores, e ele o PHP também irá lançar um 
+NOTICE informando que a soma pode não estar certa por ser uma string;
+
+Ex)
+
+<?php
+    $sum = "1 teste" + "3 Teste";
+    echo $sum;
+?>
+
+O código acima irá printar 4 e o seguinte NOTICE: A non well formed numeric value encountered;

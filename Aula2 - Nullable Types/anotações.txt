@@ -1,0 +1,12 @@
+=-=-=-=-=-=-=-= Nullable Types =-=-=-=-=-=-=-=
+
+--> Sintaxe:
+
+function foo(?int $a): ?int
+{
+    return $a;
+}
+
+
+Nullable Type é utilizado para deixar como opcional um retorno nulo de uma função ou uma entrada de parâmetro nulo;
+No caso acima, a função foo pode receber um número inteiro ou um null como parâmetro, e ela pode retornar um null ou um número inteiro;

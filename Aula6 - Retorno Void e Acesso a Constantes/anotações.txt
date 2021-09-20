@@ -1,0 +1,75 @@
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Retorno Void =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+--> Agora no PHP 7.1, é possível definir o tipo de retorno void para funções;
+
+Ex)
+
+<?php
+    function returnVoid($x) : void
+    {
+        return;
+    }
+
+    var_dump(returnVoid(4));
+?>
+
+O código acima irá retornar null.
+Contudo, quando o tipo de retorno é especificado como void, NÃO PODE usar o Nullable Type como retorno, pois dará erro;
+
+Ex)
+
+<?php
+
+    function returnVoid($x) : ?void
+    {
+        return;
+    }
+
+    returnVoid(4);
+?>
+
+O código acima dará o seguinte erro: Void type cannot be nullable (O tipo de vazio não pode ser anulável);
+
+
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Acesso a Constantes =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+--> Agora no PHP 7.1, é possível definir modificadores de acesso para constantes;
+
+Ex)
+
+<?php
+    class Exemplo
+    {
+        private const NOME = "Mario";
+        public const EMAIL = "mario@email.com";
+    }
+
+    $e = new Exemplo;
+    echo $e::EMAIL;
+?>
+
+O código acima irá printar na tela o valor da constante EMAIL, 
+pois ela está definida como pública e pode ser acessado por qualquer arquivo sem a necessidade de um getter;
+
+
+Caso queira acessar uma constante privada, basta criar um getter e acessá-la normalmente:
+
+<?php
+    class Exemplo
+    {
+        private const NAME = "Mario";
+        public const EMAIL = "mario@email.com";
+
+        public function getName()
+        {
+            return self::NAME;
+        }
+    }
+
+    echo '<br><br><b>Visibilidade de Constantes</b><br>';
+    $e = new Exemplo;
+    echo $e::EMAIL . '<br>';
+    echo $e->getName();
+?>

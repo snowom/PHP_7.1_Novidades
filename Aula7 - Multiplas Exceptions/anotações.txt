@@ -1,0 +1,74 @@
+=-=-=-=-=-=-=-=-=-=-= Multiplas Exceptions =-=-=-=-=-=-=-=-=-=-=
+
+No PHP 7.1, agora é possível lançar múltiplas exceções sem a necessidade de escrever mais de 1 bloco catch;
+
+--> Sintaxe:
+
+<?php
+    try{
+        $foo = 3;
+    }catch(ClassException_1 | ClassException_2){
+        // TODO
+    }
+?>
+
+
+Nas versões anteriores do PHP, para se lançar multiplas exceções de diferentes classes, era necessário utilizar múltiplos catch,
+onde cada bloco era responsável pelo objeto de cada classe de exceção;
+
+Ex)
+
+<?php
+    class ClassA extends Exception {}
+    class ClassB extends Exception {}
+
+    class Car
+    {
+        public function drive(int $m = 1)
+        {
+            if($m == 10)
+                throw new ClassA("A marcha {$m} não existe");
+            if($m == 9)
+                throw new ClassB("A marcha {$m} também não existe");
+            echo "Driving...";
+        }
+    }
+
+    try{
+        $c = new Car();
+        $c->drive(9);
+    }catch(ClassA $e){
+        echo $e->getMessage();
+    }catch(ClassB $e){
+        echo $e->getMessage();
+    }
+?>
+
+
+Já a partir da versão 7.1 do PHP, é possível fazer o mesmo código, porém utilizando somente 1 bloco catch com o operador |
+
+Ex)
+
+<?php
+    class ClassA extends Exception {}
+    class ClassB extends Exception {}
+
+    class Car
+    {
+        public function drive(int $m = 1)
+        {
+            if($m == 10)
+                throw new ClassA("A marcha {$m} não existe");
+            if($m == 9)
+                throw new ClassB("A marcha {$m} também não existe");
+            echo "Driving...";
+        }
+    }
+
+    try{
+        $c = new Car();
+        $c->drive(9);
+    }catch(ClassA | ClassB $e){
+        echo $e->getMessage();
+    }
+?>
